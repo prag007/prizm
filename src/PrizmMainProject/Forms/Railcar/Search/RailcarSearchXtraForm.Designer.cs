@@ -65,6 +65,8 @@
             this.shippedDateLayoutControl = new DevExpress.XtraLayout.LayoutControlItem();
             this.resultParametersLayoutGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.railcarsListLayout = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.openRailcarButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shipButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unshipButton)).BeginInit();
@@ -90,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.shippedDateLayoutControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultParametersLayoutGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.railcarsListLayout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // openRailcarButton
@@ -130,7 +133,7 @@
             this.railcarList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.shipGridButton,
             this.unshipGridButton});
-            this.railcarList.Size = new System.Drawing.Size(1211, 363);
+            this.railcarList.Size = new System.Drawing.Size(1211, 337);
             this.railcarList.TabIndex = 5;
             this.railcarList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.railcarListView});
@@ -239,6 +242,7 @@
             // 
             // generalLayout
             // 
+            this.generalLayout.Controls.Add(this.simpleButton1);
             this.generalLayout.Controls.Add(this.shippedDate);
             this.generalLayout.Controls.Add(this.railcarList);
             this.generalLayout.Controls.Add(this.searchButton);
@@ -302,7 +306,8 @@
             this.generalLayoutGroup.GroupBordersVisible = false;
             this.generalLayoutGroup.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.searchParametersLayoutGroup,
-            this.resultParametersLayoutGroup});
+            this.resultParametersLayoutGroup,
+            this.layoutControlItem1});
             this.generalLayoutGroup.Location = new System.Drawing.Point(0, 0);
             this.generalLayoutGroup.Name = "generalLayoutGroup";
             this.generalLayoutGroup.Padding = new DevExpress.XtraLayout.Utils.Padding(7, 7, 7, 5);
@@ -406,7 +411,7 @@
             this.railcarsListLayout});
             this.resultParametersLayoutGroup.Location = new System.Drawing.Point(0, 98);
             this.resultParametersLayoutGroup.Name = "resultParametersLayoutGroup";
-            this.resultParametersLayoutGroup.Size = new System.Drawing.Size(1251, 430);
+            this.resultParametersLayoutGroup.Size = new System.Drawing.Size(1251, 404);
             this.resultParametersLayoutGroup.Spacing = new DevExpress.XtraLayout.Utils.Padding(3, 3, 7, 7);
             this.resultParametersLayoutGroup.Text = "Результаты поиска";
             // 
@@ -416,12 +421,34 @@
             this.railcarsListLayout.CustomizationFormText = "railcarsListLayout";
             this.railcarsListLayout.Location = new System.Drawing.Point(0, 0);
             this.railcarsListLayout.Name = "railcarsListLayout";
-            this.railcarsListLayout.Size = new System.Drawing.Size(1225, 377);
+            this.railcarsListLayout.Size = new System.Drawing.Size(1225, 351);
             this.railcarsListLayout.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
             this.railcarsListLayout.Text = "railcarsListLayout";
             this.railcarsListLayout.TextSize = new System.Drawing.Size(0, 0);
             this.railcarsListLayout.TextToControlDistance = 0;
             this.railcarsListLayout.TextVisible = false;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(9, 511);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(1247, 22);
+            this.simpleButton1.StyleController = this.generalLayout;
+            this.simpleButton1.TabIndex = 6;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.simpleButton1;
+            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 502);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(1251, 26);
+            this.layoutControlItem1.Text = "layoutControlItem1";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextToControlDistance = 0;
+            this.layoutControlItem1.TextVisible = false;
             // 
             // RailcarSearchXtraForm
             // 
@@ -459,6 +486,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.shippedDateLayoutControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultParametersLayoutGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.railcarsListLayout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,5 +523,7 @@
         private DevExpress.XtraLayout.LayoutControlItem shippedDateLayoutControl;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit shipGridButton;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit unshipGridButton;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

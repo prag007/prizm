@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Domain.Serializable_Entity.Mill
 {
     [Serializable]
-    class SerializablePlate
+    public class SerializablePlate
     {
         public Guid Id { get; set; }
         public string PlateNumber { get; set; }

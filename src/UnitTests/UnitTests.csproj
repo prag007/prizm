@@ -69,6 +69,7 @@
     <Compile Include="Forms\Settings\SaveSettingsCommandTest.cs" />
     <Compile Include="MainChildDocumentsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializationTest\SerializationManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

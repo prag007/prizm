@@ -358,6 +358,8 @@
     <Compile Include="PrizmModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\MillData.cs" />
+    <Compile Include="Serialization\SerializationManager.cs" />
     <EmbeddedResource Include="Controls\WeldersSelectionControl.resx">
       <DependentUpon>WeldersSelectionControl.cs</DependentUpon>
     </EmbeddedResource>

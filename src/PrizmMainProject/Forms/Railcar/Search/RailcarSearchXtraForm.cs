@@ -14,6 +14,7 @@ using PrizmMain.Forms.Railcar.NewEdit;
 using PrizmMain.Forms.MainChildForm;
 
 using PrizmMain.DummyData;
+using PrizmMain.Serialization;
 
 
 namespace PrizmMain.Forms.Railcar.Search
@@ -93,6 +94,18 @@ namespace PrizmMain.Forms.Railcar.Search
         private void unshipGridButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Unship");
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            foreach (Domain.Entity.Mill.Railcar r in viewModel.Railcars)
+            {
+                foreach (Domain.Entity.Mill.Pipe pipe in r.Pipes) 
+                {
+                    //pipe.Plate.Heat
+                }
+                //SerializationManager.SaveToFile();
+            }
         }
     }
 }

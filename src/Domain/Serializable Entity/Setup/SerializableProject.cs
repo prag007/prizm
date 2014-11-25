@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Domain.Serializable_Entity.Setup
 {
     [Serializable]
-    class SerializableProject
+    public class SerializableProject
     {
         public string MillName { get; set; }
     }
