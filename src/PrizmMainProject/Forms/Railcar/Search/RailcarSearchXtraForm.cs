@@ -107,5 +107,10 @@ namespace PrizmMain.Forms.Railcar.Search
                 //SerializationManager.SaveToFile();
             }
         }
+
+        private void RailcarSearchXtraForm_Activated(object sender, EventArgs e)
+        {
+            viewModel.SearchCommand.Execute();
+        }
     }
 }

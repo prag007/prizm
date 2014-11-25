@@ -10,12 +10,18 @@ using PrizmMain.Forms.PipeMill.NewEdit;
 using PrizmMain.Forms.MainChildForm;
 
 using PrizmMain.DummyData;
+using System.Windows.Forms;
+using Domain.Entity.Mill;
+using System.Collections.Generic;
+using PrizmMain.Properties;
 
 namespace PrizmMain.Forms.PipeMill.Search
 {
     public partial class MillPipeSearchXtraForm : ChildForm
     {
         private MillPipeSearchViewModel viewModel;
+        private Dictionary<PipeMillStatus, string> statusTypeDict 
+            = new Dictionary<PipeMillStatus, string>();
 
         public MillPipeSearchXtraForm()
         {
@@ -26,12 +32,20 @@ namespace PrizmMain.Forms.PipeMill.Search
         {
             MillPipeSearchBindingSource.DataSource = viewModel;
 
+
+
             pipesSearchResult.DataBindings
                 .Add("DataSource", MillPipeSearchBindingSource, "Pipes");
             pipeNumber.DataBindings
                 .Add("EditValue", MillPipeSearchBindingSource, "PipeNumber");
             pipeMillStatus.DataBindings
                 .Add("EditValue", MillPipeSearchBindingSource, "PipeMillStatus");
+
+            statusTypeDict.Clear();
+            statusTypeDict.Add(PipeMillStatus.Produced, Resources.Produced);
+            statusTypeDict.Add(PipeMillStatus.Shipped, Resources.Shipped);
+            statusTypeDict.Add(PipeMillStatus.Stocked, Resources.Stocked);
+            repositoryLookUpEditStatus.DataSource = statusTypeDict;
         }
 
         private void BindCommands()
@@ -50,20 +64,37 @@ namespace PrizmMain.Forms.PipeMill.Search
         private void pipeRepositoryButtonEdit_Click(object sender, System.EventArgs e)
         {
 
-            int selectedPipe = pipesSearchResultView
-                .GetFocusedDataSourceRowIndex();
+            int selectedPipe = pipesSearchResultView.GetFocusedDataSourceRowIndex();
 
             var parent = this.MdiParent as PrizmApplicationXtraForm;
 
             parent.CreateChildForm(
                     typeof(MillPipeNewEditXtraForm),
                     new ConstructorArgument(
-                        "pipeNumber",
-                        viewModel.Pipes[selectedPipe].Number));
-
+                        "pipeId",
+                        viewModel.Pipes[selectedPipe].Id));
         }
 
+        private void pipesSearchResultView_DoubleClick(object sender, EventArgs e)
+        {
+            pipeRepositoryButtonEdit_Click(sender, e);
+        }
 
+        private void pipesSearchResultView_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                pipeRepositoryButtonEdit_Click(sender, e);
+            }
+        }
+
+        private void repositoryLookUpEditStatus_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        {
+            if (e.Value is PipeMillStatus)
+            {
+                e.DisplayText = statusTypeDict[(PipeMillStatus)e.Value];
+            }
+        }
 
     }
 }
