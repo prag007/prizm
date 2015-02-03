@@ -23,6 +23,7 @@ namespace Prizm.Main.Forms.ExternalFile
         private readonly AddExternalFileCommand addExternalFileCommand;
         private readonly DownloadFileCommand downloadFileCommand;
         private readonly ViewFileCommand viewFileCommand;
+        private readonly EditFileCommand editFileCommand;
         private readonly IUserNotify notify;
         private readonly Guid item;
         private BindingList<Prizm.Domain.Entity.File> files;
@@ -51,6 +52,9 @@ namespace Prizm.Main.Forms.ExternalFile
               ViewModelSource.Create(() => new DownloadFileCommand(repo, this, notify));
             viewFileCommand =
               ViewModelSource.Create(() => new ViewFileCommand(repo, this, notify));
+            editFileCommand =
+             ViewModelSource.Create(() => new EditFileCommand(repo, this, notify));
+
         }
 
         public void RefreshFiles()
@@ -105,6 +109,11 @@ namespace Prizm.Main.Forms.ExternalFile
          public ICommand ViewFileCommand
          {
              get { return viewFileCommand; }
+         }
+
+         public ICommand EditFileCommand
+         {
+             get { return editFileCommand; }
          }
         #endregion
 

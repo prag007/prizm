@@ -26,15 +26,17 @@ namespace Prizm.Main.Forms.ExternalFile
                 .Kernel
                 .Get<ExternalFilesViewModel>(
                 new ConstructorArgument("item", item));
+            if (!isEditMode)
+            {
+                SetReadOnlyMode();
+            }
+         }
 
-            if(isEditMode)
-            {
-                buttonLayoutControlGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-            }
-            else
-            {
-                buttonLayoutControlGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            }
+        private void SetReadOnlyMode()
+        {
+            buttonLayoutControlGroup.Enabled = false;
+            //colDownload.Visible = false;
+            //colEdit.Visible = false;
         }
 
         private void ExternalFilesXtraForm_Load(object sender, EventArgs e)
@@ -63,12 +65,9 @@ namespace Prizm.Main.Forms.ExternalFile
         private void addFile_Click(object sender, EventArgs e)
         {
             Guid newNameId = Guid.NewGuid();
-            OpenFileDialog openFileDlg = new OpenFileDialog();
-            // TODO Save new files position to user settings.
-            openFileDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            FileInfo fileInfo = GetFileInfo();
+            if (fileInfo!= null)
             {
-                FileInfo fileInfo = new FileInfo(openFileDlg.FileName);
                 if (!Directory.Exists(Directories.FilesToAttachFolder))
                 {
                     Directory.CreateDirectory(Directories.FilesToAttachFolder);
@@ -80,8 +79,21 @@ namespace Prizm.Main.Forms.ExternalFile
                 fileInfo.CopyTo(string.Format("{0}{1}{2}", Directories.FilesToAttachFolder, newNameId, fileInfo.Extension));
                 viewModel.FilesToAttach.Add(newNameId.ToString() + fileInfo.Extension, fileInfo.Name);
                 Prizm.Domain.Entity.File newFile = new Prizm.Domain.Entity.File() {FileName = fileInfo.Name, UploadDate = DateTime.Now };
-                viewModel.Files.Add(newFile);
+                viewModel.Files.Add(newFile);      
             }
+        }
+
+        private FileInfo GetFileInfo()
+        {
+           FileInfo fileInfo = null;
+           OpenFileDialog openFileDlg = new OpenFileDialog();
+            // TODO Save new files position to user settings.
+            openFileDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                fileInfo = new FileInfo(openFileDlg.FileName);
+            }
+            return fileInfo;
         }
 
         private void downloadButton_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -110,6 +122,22 @@ namespace Prizm.Main.Forms.ExternalFile
                 viewModel.SelectedFile = selectedFile;
                 viewModel.ViewFileCommand.Execute();
             }
+        }
+
+        private void editButton_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {   
+            Prizm.Domain.Entity.File selectedFile = filesView.GetRow(filesView.FocusedRowHandle) as Prizm.Domain.Entity.File;
+            if (selectedFile != null)
+            {
+                FileInfo fileInfo = GetFileInfo();
+                if (fileInfo != null)
+                {
+                    viewModel.SelectedFile = selectedFile;
+                    viewModel.SelectedPath = fileInfo.FullName;
+                    viewModel.EditFileCommand.Execute();
+                }
+            }
+
         }
 
         public ExternalFilesViewModel ViewModel
