@@ -284,6 +284,7 @@
     </Compile>
     <Compile Include="Forms\Joint\NewEdit\JointDeactivationCommand.cs" />
     <Compile Include="Forms\Joint\NewEdit\NewSaveJointCommand.cs" />
+    <Compile Include="Forms\MainChildForm\ChildEditableForm.cs" />
     <Compile Include="Forms\MainChildForm\FirstSetupForm\FirstSetupRepo.cs" />
     <Compile Include="Forms\MainChildForm\FirstSetupForm\FirstSetupSaveCommand.cs" />
     <Compile Include="Forms\MainChildForm\FirstSetupForm\FirstSetupViewModel.cs" />

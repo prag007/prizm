@@ -36,7 +36,7 @@ using Prizm.Main.Languages;
 namespace Prizm.Main.Forms.PipeMill.NewEdit
 {
     [System.ComponentModel.DesignerCategory("Form")]
-    public partial class MillPipeNewEditXtraForm : ChildForm, IValidatable, INewEditEntityForm
+    public partial class MillPipeNewEditXtraForm : ChildEditableForm, IValidatable, INewEditEntityForm
     {
         private InspectionAddEditXtraForm inspectionForm;
         private Guid id;

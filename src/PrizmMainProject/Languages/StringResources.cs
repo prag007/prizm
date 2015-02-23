@@ -2342,6 +2342,12 @@ namespace Prizm.Main.Languages
             Id = "SaveDialog_SaveLabel", 
             Description = "Диалог сохранения. Текст"};
 
+        public static StringResource SaveDialog_SaveLabelWithWrongValidation = new StringResource
+        {
+            Id = "SaveDialog_SaveLabelWithWrongValidation",
+            Description = "Диалог сохранения v2. Текст"
+        };
+
         public static StringResource SaveDialog_SaveButton = new StringResource { 
             Id = "SaveDialog_SaveButton", 
             Description = "Диалог сохранения. Кнопка сохранения"};

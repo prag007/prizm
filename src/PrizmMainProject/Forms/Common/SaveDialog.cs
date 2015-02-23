@@ -16,6 +16,7 @@ namespace Prizm.Main.Forms.Common
     [System.ComponentModel.DesignerCategory("Form")]
     public partial class SaveDialog : PrizmForm
    {
+        public bool validate=true;
       public SaveDialog()
       {
          InitializeComponent();
@@ -27,7 +28,8 @@ namespace Prizm.Main.Forms.Common
       {
           return new List<LocalizedItem>()
           {
-              new LocalizedItem(lblText, StringResources.SaveDialog_SaveLabel.Id),
+              new LocalizedItem(lblTextForTrueValidate, StringResources.SaveDialog_SaveLabel.Id),
+              new LocalizedItem(lblTextForFalseValidate, StringResources.SaveDialog_SaveLabelWithWrongValidation.Id),
               new LocalizedItem(btnSave, StringResources.SaveDialog_SaveButton.Id),
               new LocalizedItem(btnDontSave, StringResources.SaveDialog_DontSaveButton.Id),
               new LocalizedItem(btnCancel, StringResources.SaveDialog_CancelButton.Id),
@@ -38,6 +40,22 @@ namespace Prizm.Main.Forms.Common
       }
 
       #endregion // --- Localization ---
+
+      private void SaveDialog_Load(object sender, EventArgs e)
+      {
+          btnSave.Enabled = validate;
+          if (!validate)
+          {
+              lblTextForTrueValidate.Visible = false;
+              lblTextForFalseValidate.Visible = true;
+          }
+
+          else
+          {
+              lblTextForTrueValidate.Visible = true;
+              lblTextForFalseValidate.Visible = false;
+          }
+      }
 
    }
 }

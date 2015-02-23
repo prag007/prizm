@@ -22,7 +22,7 @@ using Prizm.Main.Common;
 namespace Prizm.Main.Forms.Parts.Inspection
 {
     [System.ComponentModel.DesignerCategory("Form")]
-    public partial class PartInspectionXtraForm : ChildForm
+    public partial class PartInspectionXtraForm : ChildEditableForm
     {
         private PartInspectionViewModel viewModel;
         ICommandManager commandManager = new CommandManager();
